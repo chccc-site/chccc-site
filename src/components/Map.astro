@@ -1,0 +1,36 @@
+---
+interface Props {
+  address: {
+    line1: string;
+    line2: string;
+  };
+}
+
+const { address } = Astro.props;
+const query = encodeURIComponent(`${address.line1}, ${address.line2}`);
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+const embedUrl = `https://www.google.com/maps?q=${query}&output=embed`;
+---
+
+<section class="relative bg-border">
+  <iframe
+    src={embedUrl}
+    width="100%"
+    height="280"
+    style="border:0; display:block;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    aria-label="Church location map"
+    title="Map showing Cherry Hill Chinese Christian Church location"
+  ></iframe>
+  <div class="text-center py-3 bg-bg border-t border-border">
+    <a
+      href={mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-text-light hover:text-primary no-underline transition-colors duration-150"
+    >
+      {address.line1}, {address.line2} — Open in Google Maps
+    </a>
+  </div>
+</section>

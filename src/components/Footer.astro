@@ -1,0 +1,25 @@
+---
+interface Props {
+  footer: {
+    about: string;
+    beliefs: string;
+    giving: string;
+    contact: string;
+    copyright: string;
+  };
+}
+
+const { footer } = Astro.props;
+---
+
+<footer class="bg-footer-bg py-8">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 text-center">
+    <div class="flex flex-wrap justify-center gap-6 mb-4">
+      <a href="#" class="text-sm text-footer-text no-underline hover:text-white transition-colors duration-150">{footer.about}</a>
+      <a href="#" class="text-sm text-footer-text no-underline hover:text-white transition-colors duration-150">{footer.beliefs}</a>
+      <a href="#" class="text-sm text-footer-text no-underline hover:text-white transition-colors duration-150">{footer.giving}</a>
+      <a href="#contact" class="text-sm text-footer-text no-underline hover:text-white transition-colors duration-150">{footer.contact}</a>
+    </div>
+    <p class="text-xs text-footer-text">{footer.copyright}</p>
+  </div>
+</footer>

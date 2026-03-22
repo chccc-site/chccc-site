@@ -1,0 +1,45 @@
+---
+interface Props {
+  info: {
+    address: {
+      label: string;
+      line1: string;
+      line2: string;
+    };
+    livestream: {
+      label: string;
+      detail: string;
+      linkText: string;
+    };
+    contact: {
+      label: string;
+      email: string;
+      phone: string;
+    };
+  };
+}
+
+const { info } = Astro.props;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(info.address.line1 + ', ' + info.address.line2)}`;
+---
+
+<section id="contact" class="py-10 sm:py-14 bg-bg border-t border-border">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+    <div>
+      <h3 class="text-sm font-medium text-text uppercase tracking-wide mb-2">{info.address.label}</h3>
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="text-sm text-text-light no-underline hover:text-primary transition-colors duration-150">
+        {info.address.line1}<br />{info.address.line2}
+      </a>
+    </div>
+    <div>
+      <h3 class="text-sm font-medium text-text uppercase tracking-wide mb-2">{info.livestream.label}</h3>
+      <p class="text-sm text-text-light">{info.livestream.detail}</p>
+      <a href="#" class="text-sm text-primary no-underline hover:text-primary-dark transition-colors duration-150">{info.livestream.linkText}</a>
+    </div>
+    <div>
+      <h3 class="text-sm font-medium text-text uppercase tracking-wide mb-2">{info.contact.label}</h3>
+      <a href={`mailto:${info.contact.email}`} class="text-sm text-text-light no-underline hover:text-primary transition-colors duration-150 block">{info.contact.email}</a>
+      <a href={`tel:${info.contact.phone.replace(/[^+\d]/g, '')}`} class="text-sm text-text-light no-underline hover:text-primary transition-colors duration-150 block">{info.contact.phone}</a>
+    </div>
+  </div>
+</section>

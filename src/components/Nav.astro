@@ -1,0 +1,103 @@
+---
+interface Props {
+  nav: {
+    churchName: string;
+    churchNameEn: string;
+    services: string;
+    welcome: string;
+    visit: string;
+    contact: string;
+    langToggle: string;
+    langToggleHref: string;
+    menuLabel: string;
+  };
+}
+
+const { nav } = Astro.props;
+---
+
+<nav aria-label="Main navigation" class="sticky top-0 z-50 bg-surface border-b border-border">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 flex items-center justify-between h-16">
+    <div class="flex-shrink-0">
+      <a href="#" class="text-text no-underline">
+        <span class="text-lg font-medium leading-tight block">{nav.churchName}</span>
+        {nav.churchNameEn && (
+          <span class="text-xs text-text-light block">{nav.churchNameEn}</span>
+        )}
+      </a>
+    </div>
+
+    <div class="hidden sm:flex items-center gap-6">
+      <a href="#services" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+        {nav.services}
+      </a>
+      <a href="#welcome" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+        {nav.welcome}
+      </a>
+      <a href="#visit" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+        {nav.visit}
+      </a>
+      <a href="#contact" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+        {nav.contact}
+      </a>
+      <a
+        href={nav.langToggleHref}
+        class="text-[13px] text-text-light border border-border rounded px-3 py-1 hover:text-text hover:border-text transition-colors duration-150 no-underline"
+      >
+        {nav.langToggle}
+      </a>
+    </div>
+
+    <div class="flex sm:hidden items-center gap-3">
+      <a
+        href={nav.langToggleHref}
+        class="text-[13px] text-text-light border border-border rounded px-3 py-1 no-underline"
+      >
+        {nav.langToggle}
+      </a>
+      <button
+        id="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label={nav.menuLabel}
+        class="w-11 h-11 flex items-center justify-center text-text"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6" class="menu-line-top" />
+          <line x1="3" y1="12" x2="21" y2="12" class="menu-line-mid" />
+          <line x1="3" y1="18" x2="21" y2="18" class="menu-line-bot" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="sm:hidden fixed inset-0 top-16 bg-surface z-40 flex flex-col items-center justify-center gap-8 transition-all duration-200 ease-out"
+    style="display:none;"
+  >
+    <a href="#services" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.services}</a>
+    <a href="#welcome" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.welcome}</a>
+    <a href="#visit" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.visit}</a>
+    <a href="#contact" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.contact}</a>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.style.display = expanded ? 'none' : 'flex';
+    });
+    menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.style.display = 'none';
+      });
+    });
+  }
+</script>

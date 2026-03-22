@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHCCC Homepage Wireframe</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; color: #333; background: #fafafa; }
+
+  /* Intentionally rough wireframe aesthetic */
+  .wireframe-note {
+    background: #fffde7; border: 1px dashed #ccc; padding: 6px 12px;
+    font-size: 11px; color: #888; text-align: center;
+  }
+
+  /* Nav */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 32px; border-bottom: 1px solid #e0e0e0; background: #fff;
+  }
+  nav .logo { font-size: 18px; font-weight: 600; color: #1a1a1a; }
+  nav .logo small { font-size: 12px; color: #888; display: block; }
+  nav .links { display: flex; gap: 24px; font-size: 14px; color: #555; }
+  nav .links a { text-decoration: none; color: #555; }
+  nav .lang-toggle {
+    border: 1px solid #ccc; border-radius: 4px; padding: 4px 12px;
+    font-size: 13px; color: #555; background: #f5f5f5; cursor: pointer;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative; height: 520px; background: linear-gradient(135deg, #2c5f7c 0%, #4a8fa8 50%, #6bb5c9 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: #fff; overflow: hidden;
+  }
+  .hero::before {
+    content: '[ church building photo — warm, inviting exterior or interior ]';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-size: 13px; color: rgba(255,255,255,0.4); border: 1px dashed rgba(255,255,255,0.3);
+    padding: 40px 60px; pointer-events: none;
+  }
+  .hero h1 { font-size: 42px; font-weight: 300; letter-spacing: 2px; margin-bottom: 8px; z-index: 1; }
+  .hero h2 { font-size: 18px; font-weight: 300; opacity: 0.9; margin-bottom: 32px; z-index: 1; }
+  .hero .cta {
+    z-index: 1; padding: 14px 36px; background: #fff; color: #2c5f7c;
+    border: none; border-radius: 6px; font-size: 16px; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+  }
+  .hero .sub-cta { z-index: 1; margin-top: 12px; font-size: 14px; opacity: 0.8; }
+
+  /* Service Times */
+  .services {
+    display: flex; justify-content: center; gap: 32px; padding: 48px 32px;
+    background: #fff; flex-wrap: wrap;
+  }
+  .service-card {
+    border: 1px solid #e8e8e8; border-radius: 8px; padding: 28px 32px;
+    text-align: center; min-width: 200px; flex: 1; max-width: 260px;
+  }
+  .service-card .time { font-size: 28px; font-weight: 300; color: #2c5f7c; }
+  .service-card .label { font-size: 14px; color: #666; margin-top: 4px; }
+  .service-card .day { font-size: 13px; color: #999; margin-top: 8px; }
+
+  /* Welcome */
+  .welcome {
+    padding: 56px 32px; max-width: 680px; margin: 0 auto; text-align: center;
+  }
+  .welcome h3 { font-size: 26px; font-weight: 400; color: #1a1a1a; margin-bottom: 16px; }
+  .welcome p { font-size: 16px; line-height: 1.8; color: #555; }
+
+  /* Info Strip */
+  .info-strip {
+    display: flex; justify-content: center; gap: 48px; padding: 40px 32px;
+    background: #f5f8fa; flex-wrap: wrap;
+  }
+  .info-item { text-align: center; }
+  .info-item .icon { font-size: 28px; margin-bottom: 8px; }
+  .info-item .title { font-size: 14px; font-weight: 600; color: #333; }
+  .info-item .detail { font-size: 13px; color: #666; margin-top: 4px; max-width: 200px; }
+
+  /* Map placeholder */
+  .map-section {
+    height: 280px; background: #e8e8e8; display: flex; align-items: center;
+    justify-content: center; color: #999; font-size: 14px;
+    border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+  }
+
+  /* Footer */
+  footer {
+    padding: 32px; text-align: center; font-size: 13px; color: #888;
+    background: #1a1a1a; color: #999;
+  }
+  footer .footer-links { margin-bottom: 12px; }
+  footer .footer-links a { color: #aaa; text-decoration: none; margin: 0 12px; }
+</style>
+</head>
+<body>
+
+<div class="wireframe-note">WIREFRAME — Cherry Hill CCC Homepage Redesign (Chinese version shown)</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">
+    櫻桃山華人基督教會
+    <small>Cherry Hill Chinese Christian Church</small>
+  </div>
+  <div class="links">
+    <a href="#">關於我們</a>
+    <a href="#">崇拜</a>
+    <a href="#">活動</a>
+    <a href="#">聯絡</a>
+  </div>
+  <div class="lang-toggle">EN / 中</div>
+</nav>
+
+<!-- Hero Section -->
+<!-- Design decision: Full-bleed hero with minimal text.
+     The church photo does the heavy lifting — text is secondary.
+     Single CTA: "Plan Your Visit" — the #1 action for new visitors. -->
+<div class="hero">
+  <h1>歡迎回家</h1>
+  <h2>Welcome Home</h2>
+  <a class="cta" href="#">計劃你的到訪 →</a>
+  <div class="sub-cta">每週日崇拜 · Cherry Hill, NJ</div>
+</div>
+
+<!-- Service Times -->
+<!-- Design decision: Service times are THE most important info for new visitors.
+     Cards make it scannable. Three services = three cards. -->
+<div class="services">
+  <div class="service-card">
+    <div class="time">9:30</div>
+    <div class="label">國語崇拜</div>
+    <div class="day">每週日 · Mandarin Service</div>
+  </div>
+  <div class="service-card">
+    <div class="time">9:30</div>
+    <div class="label">粵語崇拜</div>
+    <div class="day">每週日 · Cantonese Service</div>
+  </div>
+  <div class="service-card">
+    <div class="time">11:00</div>
+    <div class="label">英語崇拜</div>
+    <div class="day">每週日 · English Service</div>
+  </div>
+</div>
+
+<!-- Welcome Message -->
+<!-- Design decision: Short, warm, personal. NOT a pastoral letter.
+     Two sentences max. The goal is warmth, not information. -->
+<div class="welcome">
+  <h3>無論你的背景，這裡都是你的家</h3>
+  <p>
+    櫻桃山華人基督教會是一個充滿愛的多語言社區。我們歡迎每一個人——無論你是剛到Cherry Hill，
+    還是在尋找一個屬靈的家，這裡有你的位置。
+  </p>
+</div>
+
+<!-- Info Strip -->
+<!-- Design decision: Three key facts a visitor needs.
+     Address, livestream, and contact — nothing else. -->
+<div class="info-strip">
+  <div class="info-item">
+    <div class="icon">📍</div>
+    <div class="title">地址</div>
+    <div class="detail">259 Browning Lane<br>Cherry Hill, NJ 08003</div>
+  </div>
+  <div class="info-item">
+    <div class="icon">📺</div>
+    <div class="title">線上直播</div>
+    <div class="detail">每週日崇拜直播<br>YouTube 頻道</div>
+  </div>
+  <div class="info-item">
+    <div class="icon">✉️</div>
+    <div class="title">聯絡我們</div>
+    <div class="detail">office@cherryhillccc.org<br>(714) 469-6440</div>
+  </div>
+</div>
+
+<!-- Map -->
+<div class="map-section">
+  [ Embedded Google Map — 259 Browning Lane, Cherry Hill, NJ 08003 ]
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-links">
+    <a href="#">關於我們</a>
+    <a href="#">教會信仰</a>
+    <a href="#">奉獻</a>
+    <a href="#">聯絡</a>
+  </div>
+  © 2026 Cherry Hill Chinese Christian Church
+</footer>
+
+</body>
+</html>

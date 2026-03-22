@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Services from './Services.astro';
+import Welcome from './Welcome.astro';
+import WhatToExpect from './WhatToExpect.astro';
+import InfoStrip from './InfoStrip.astro';
+import Map from './Map.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  locale: 'zh' | 'en';
+}
+
+const { locale } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const strings = locale === 'zh'
+  ? await import('../content/strings.zh.json')
+  : await import('../content/strings.en.json');
+const s = strings.default ?? strings;
+const nav = { ...s.nav, langToggleHref: `${base}${s.nav.langToggleHref.replace(/^\//, '')}` };
+---
+
+<Layout title={s.title} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={nav} />
+  <main id="main-content">
+    <Hero hero={s.hero} />
+    <Services heading={s.services.heading} items={s.services.items} />
+    <Welcome heading={s.welcome.heading} body={s.welcome.body} />
+    <WhatToExpect heading={s.expect.heading} items={s.expect.items} />
+    <InfoStrip info={s.info} />
+    <Map address={s.info.address} />
+  </main>
+  <Footer footer={s.footer} />
+</Layout>

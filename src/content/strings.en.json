@@ -1,0 +1,74 @@
+{
+  "lang": "en",
+  "htmlLang": "en",
+  "title": "Cherry Hill Chinese Christian Church",
+  "description": "Cherry Hill Chinese Christian Church — a loving, multilingual community that welcomes everyone.",
+  "nav": {
+    "churchName": "Cherry Hill Chinese Christian Church",
+    "churchNameEn": "",
+    "services": "Services",
+    "welcome": "Welcome",
+    "visit": "Visit",
+    "contact": "Contact",
+    "langToggle": "中文",
+    "langToggleHref": "/zh/",
+    "menuLabel": "Menu"
+  },
+  "hero": {
+    "headline": "Welcome Home",
+    "subtitle": "",
+    "cta": "Plan Your Visit →",
+    "subtext": "Every Sunday · Cherry Hill, NJ"
+  },
+  "services": {
+    "heading": "Service Times",
+    "items": [
+      { "time": "9:30", "label": "Mandarin Service", "day": "Every Sunday", "sublabel": "國語崇拜" },
+      { "time": "9:30", "label": "Cantonese Service", "day": "Every Sunday", "sublabel": "粵語崇拜" },
+      { "time": "11:00", "label": "English Service", "day": "Every Sunday", "sublabel": "英語崇拜" }
+    ]
+  },
+  "welcome": {
+    "heading": "No matter your background, there's a place for you here",
+    "body": "Cherry Hill Chinese Christian Church is a loving, multilingual community. Whether you're new to Cherry Hill or looking for a spiritual home, you belong here."
+  },
+  "expect": {
+    "heading": "First time visiting?",
+    "items": [
+      "Come as you are — no dress code",
+      "Free parking with plenty of space",
+      "You'll be warmly greeted at the door",
+      "Services available in Mandarin, Cantonese, and English"
+    ]
+  },
+  "info": {
+    "address": {
+      "label": "Address",
+      "line1": "259 Browning Lane",
+      "line2": "Cherry Hill, NJ 08003"
+    },
+    "livestream": {
+      "label": "Livestream",
+      "detail": "Watch live every Sunday",
+      "linkText": "YouTube Channel"
+    },
+    "contact": {
+      "label": "Contact Us",
+      "email": "office@cherryhillccc.org",
+      "phone": "(856) 424-3555"
+    }
+  },
+  "footer": {
+    "about": "About Us",
+    "beliefs": "Our Beliefs",
+    "giving": "Giving",
+    "contact": "Contact",
+    "copyright": "© 2026 Cherry Hill Chinese Christian Church"
+  },
+  "notFound": {
+    "heading": "Page Not Found",
+    "body": "Sorry, the page you're looking for doesn't exist.",
+    "link": "Back to Home"
+  },
+  "skipToContent": "Skip to main content"
+}

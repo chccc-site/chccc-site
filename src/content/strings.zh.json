@@ -1,0 +1,74 @@
+{
+  "lang": "zh",
+  "htmlLang": "zh-Hant",
+  "title": "櫻桃山華人基督教會",
+  "description": "櫻桃山華人基督教會 — 一個充滿愛的多語言社區，歡迎每一個人。",
+  "nav": {
+    "churchName": "櫻桃山華人基督教會",
+    "churchNameEn": "Cherry Hill Chinese Christian Church",
+    "services": "崇拜",
+    "welcome": "歡迎",
+    "visit": "到訪",
+    "contact": "聯絡",
+    "langToggle": "EN",
+    "langToggleHref": "/en/",
+    "menuLabel": "選單"
+  },
+  "hero": {
+    "headline": "歡迎回家",
+    "subtitle": "Welcome Home",
+    "cta": "計劃你的到訪 →",
+    "subtext": "每週日崇拜 · Cherry Hill, NJ"
+  },
+  "services": {
+    "heading": "崇拜時間",
+    "items": [
+      { "time": "9:30", "label": "國語崇拜", "day": "每週日", "sublabel": "Mandarin Service" },
+      { "time": "9:30", "label": "粵語崇拜", "day": "每週日", "sublabel": "Cantonese Service" },
+      { "time": "11:00", "label": "英語崇拜", "day": "每週日", "sublabel": "English Service" }
+    ]
+  },
+  "welcome": {
+    "heading": "無論你的背景，這裡都是你的家",
+    "body": "櫻桃山華人基督教會是一個充滿愛的多語言社區。我們歡迎每一個人——無論你是剛到 Cherry Hill，還是在尋找一個屬靈的家，這裡有你的位置。"
+  },
+  "expect": {
+    "heading": "第一次來？",
+    "items": [
+      "穿著輕鬆自在，不需要正式服裝",
+      "免費停車，車位充足",
+      "門口會有人熱情迎接你",
+      "崇拜提供國語、粵語和英語服務"
+    ]
+  },
+  "info": {
+    "address": {
+      "label": "地址",
+      "line1": "259 Browning Lane",
+      "line2": "Cherry Hill, NJ 08003"
+    },
+    "livestream": {
+      "label": "線上直播",
+      "detail": "每週日崇拜直播",
+      "linkText": "YouTube 頻道"
+    },
+    "contact": {
+      "label": "聯絡我們",
+      "email": "office@cherryhillccc.org",
+      "phone": "(856) 424-3555"
+    }
+  },
+  "footer": {
+    "about": "關於我們",
+    "beliefs": "教會信仰",
+    "giving": "奉獻",
+    "contact": "聯絡",
+    "copyright": "© 2026 Cherry Hill Chinese Christian Church"
+  },
+  "notFound": {
+    "heading": "找不到頁面",
+    "body": "抱歉，您要找的頁面不存在。",
+    "link": "回到首頁"
+  },
+  "skipToContent": "跳到主要內容"
+}

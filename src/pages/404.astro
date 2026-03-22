@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import zhStrings from '../content/strings.zh.json';
+import enStrings from '../content/strings.en.json';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Page Not Found" description="Page not found" lang="en" htmlLang="en" skipToContent="Skip to main content">
+  <main id="main-content" class="min-h-screen flex items-center justify-center bg-bg">
+    <div class="text-center px-4 py-20">
+      <h1 class="text-5xl font-light text-primary mb-6">404</h1>
+
+      <div class="mb-8">
+        <p class="text-xl text-text mb-2">{zhStrings.notFound.heading}</p>
+        <p class="text-text-light">{zhStrings.notFound.body}</p>
+        <a href={`${base}zh/`} class="inline-block mt-3 text-primary hover:text-primary-dark no-underline transition-colors duration-150">
+          {zhStrings.notFound.link} →
+        </a>
+      </div>
+
+      <hr class="border-border max-w-xs mx-auto mb-8" />
+
+      <div>
+        <p class="text-xl text-text mb-2">{enStrings.notFound.heading}</p>
+        <p class="text-text-light">{enStrings.notFound.body}</p>
+        <a href={`${base}en/`} class="inline-block mt-3 text-primary hover:text-primary-dark no-underline transition-colors duration-150">
+          {enStrings.notFound.link} →
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
