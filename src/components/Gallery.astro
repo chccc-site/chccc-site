@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import gallery1 from '../assets/photos/gallery-1.jpg';
+import gallery2 from '../assets/photos/gallery-2.jpg';
+import gallery3 from '../assets/photos/gallery-3.jpg';
+import gallery4 from '../assets/photos/gallery-4.jpg';
+import gallery5 from '../assets/photos/gallery-5.jpg';
+
+interface Props {
+  heading: string;
+  subtitle: string;
+}
+
+const { heading, subtitle } = Astro.props;
+
+const photos = [
+  { src: gallery1, alt: 'Worship', tall: true },
+  { src: gallery2, alt: 'Bible study' },
+  { src: gallery3, alt: 'Youth group' },
+  { src: gallery4, alt: 'Potluck' },
+  { src: gallery5, alt: 'Outdoor event' },
+];
+---
+
+<section class="py-14 sm:py-20 bg-bg section-animate">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+    <div class="text-center mb-10">
+      <h2 class="text-[26px] sm:text-[28px] font-normal text-text leading-snug">{heading}</h2>
+      <p class="text-base text-text-light mt-1">{subtitle}</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 auto-rows-[160px] sm:auto-rows-[200px] gap-4">
+      {photos.map((photo) => (
+        <div class:list={[
+          'rounded-lg overflow-hidden bg-border',
+          photo.tall ? 'sm:row-span-2' : '',
+        ]}>
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            class="w-full h-full object-cover"
+            widths={[320, 480]}
+            sizes="(min-width: 640px) 33vw, 50vw"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

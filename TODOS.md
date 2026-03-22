@@ -25,3 +25,11 @@
 - **Cons:** Another file to maintain. Minimal — the content already exists.
 - **Context:** Design system was defined during /plan-design-review on 2026-03-21. Includes vermillion palette, Noto Sans typography, 8px spacing scale, responsive breakpoints.
 - **Depends on:** Homepage implementation should be started first so the DESIGN.md reflects what's actually built, not just planned.
+
+### Add test infrastructure (Vitest + Playwright)
+- **What:** Set up Vitest for unit/build tests and Playwright for E2E smoke tests. Add content JSON validation (required fields exist), build success check, and E2E tests for page rendering, photo loading, language toggle, and responsive layouts.
+- **Why:** The project has zero tests. Base URL bugs in the first deploy were caught manually. Automated tests prevent regressions as the site grows.
+- **Pros:** Catches broken builds, missing content fields, and URL routing bugs before deploy. CI integration via GitHub Actions.
+- **Cons:** Adds dev dependencies (vitest, @playwright/test). Playwright needs browser binaries (~100MB in CI).
+- **Context:** Eng review on 2026-03-22 identified 24 untested codepaths across 9 components. Approved test strategy 2A (build + content + E2E). Test plan artifact at `~/.gstack/projects/chccc-site/jingteng-unknown-eng-review-test-plan-20260322-150800.md`.
+- **Depends on:** Visual Richness Upgrade should be complete first so tests cover the final component structure.

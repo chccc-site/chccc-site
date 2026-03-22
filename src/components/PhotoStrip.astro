@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import strip1 from '../assets/photos/strip-1.jpg';
+import strip2 from '../assets/photos/strip-2.jpg';
+import strip3 from '../assets/photos/strip-3.jpg';
+import strip4 from '../assets/photos/strip-4.jpg';
+
+const photos = [strip1, strip2, strip3, strip4];
+const alts = [
+  'Fellowship scene',
+  'Worship scene',
+  'Children and youth',
+  'Potluck gathering',
+];
+---
+
+<section class="grid grid-cols-2 sm:grid-cols-4 gap-[4px] section-animate" aria-label="Community photos">
+  {photos.map((photo, i) => (
+    <div class="aspect-[4/3] overflow-hidden bg-border">
+      <Image
+        src={photo}
+        alt={alts[i]}
+        class="w-full h-full object-cover"
+        widths={[320, 480]}
+        sizes="(min-width: 640px) 25vw, 50vw"
+        loading="lazy"
+      />
+    </div>
+  ))}
+</section>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/photos/hero.jpg';
+
 interface Props {
   hero: {
     headline: string;
@@ -6,15 +9,22 @@ interface Props {
     cta: string;
     subtext: string;
   };
+  heroAlt: string;
 }
 
-const { hero } = Astro.props;
+const { hero, heroAlt } = Astro.props;
 ---
 
-<section class="relative flex flex-col items-center justify-center text-center text-white overflow-hidden h-[360px] sm:h-[440px] lg:h-[520px]"
-  style="background: linear-gradient(135deg, #5a1a17 0%, #B8342E 40%, #d4574f 100%);"
->
-  <div class="absolute inset-0 bg-[#1A1A1A]/40"></div>
+<section class="relative flex flex-col items-center justify-center text-center text-white overflow-hidden h-[360px] sm:h-[440px] lg:h-[520px]">
+  <Image
+    src={heroImg}
+    alt={heroAlt}
+    class="absolute inset-0 w-full h-full object-cover object-center"
+    widths={[640, 1024, 1920]}
+    sizes="100vw"
+    loading="eager"
+  />
+  <div class="absolute inset-0 bg-black/40"></div>
   <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent"></div>
 
   <div class="relative z-10 px-4 max-w-2xl">

@@ -21,11 +21,13 @@
     "subtext": "Every Sunday · Cherry Hill, NJ"
   },
   "services": {
-    "heading": "Service Times",
+    "heading": "Sunday Schedule",
     "items": [
-      { "time": "9:30", "label": "Mandarin Service", "day": "Every Sunday", "sublabel": "國語崇拜" },
-      { "time": "9:30", "label": "Cantonese Service", "day": "Every Sunday", "sublabel": "粵語崇拜" },
-      { "time": "11:00", "label": "English Service", "day": "Every Sunday", "sublabel": "英語崇拜" }
+      { "time": "10:00", "label": "Mandarin Service", "day": "Every Sunday", "sublabel": "國語崇拜" },
+      { "time": "10:00", "label": "Cantonese Service", "day": "Every Sunday", "sublabel": "粵語崇拜" },
+      { "time": "10:00", "label": "English Service", "day": "Every Sunday", "sublabel": "英語崇拜" },
+      { "time": "11:30", "label": "Sunday School", "day": "Every Sunday", "sublabel": "All three languages" },
+      { "time": "12:30", "label": "Fellowship Lunch", "day": "Every Sunday", "sublabel": "Complimentary" }
     ]
   },
   "welcome": {
@@ -44,7 +46,7 @@
   "info": {
     "address": {
       "label": "Address",
-      "line1": "259 Browning Lane",
+      "line1": "299 Browning Lane",
       "line2": "Cherry Hill, NJ 08003"
     },
     "livestream": {
@@ -54,8 +56,8 @@
     },
     "contact": {
       "label": "Contact Us",
-      "email": "office@cherryhillccc.org",
-      "phone": "(856) 424-3555"
+      "email": "chccc_office@yahoo.com",
+      "phone": "(856) 428-1398"
     }
   },
   "footer": {
@@ -70,5 +72,12 @@
     "body": "Sorry, the page you're looking for doesn't exist.",
     "link": "Back to Home"
   },
-  "skipToContent": "Skip to main content"
+  "skipToContent": "Skip to main content",
+  "heroAlt": "Congregation gathered for 22nd anniversary photo in front of the church",
+  "welcomeAlt": "Members at the Seeds of Hope gathering",
+  "visitAlt": "Members posing at a church event photo booth",
+  "gallery": {
+    "heading": "Our Community Life",
+    "subtitle": "生活點滴"
+  }
 }

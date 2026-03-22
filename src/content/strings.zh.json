@@ -21,11 +21,13 @@
     "subtext": "每週日崇拜 · Cherry Hill, NJ"
   },
   "services": {
-    "heading": "崇拜時間",
+    "heading": "主日活動",
     "items": [
-      { "time": "9:30", "label": "國語崇拜", "day": "每週日", "sublabel": "Mandarin Service" },
-      { "time": "9:30", "label": "粵語崇拜", "day": "每週日", "sublabel": "Cantonese Service" },
-      { "time": "11:00", "label": "英語崇拜", "day": "每週日", "sublabel": "English Service" }
+      { "time": "10:00", "label": "國語崇拜", "day": "每週日", "sublabel": "Mandarin Service" },
+      { "time": "10:00", "label": "粵語崇拜", "day": "每週日", "sublabel": "Cantonese Service" },
+      { "time": "10:00", "label": "英語崇拜", "day": "每週日", "sublabel": "English Service" },
+      { "time": "11:30", "label": "主日學", "day": "每週日", "sublabel": "Sunday School · 國粵英三語" },
+      { "time": "12:30", "label": "愛筵午餐", "day": "每週日", "sublabel": "Fellowship Lunch · 免費" }
     ]
   },
   "welcome": {
@@ -44,7 +46,7 @@
   "info": {
     "address": {
       "label": "地址",
-      "line1": "259 Browning Lane",
+      "line1": "299 Browning Lane",
       "line2": "Cherry Hill, NJ 08003"
     },
     "livestream": {
@@ -54,8 +56,8 @@
     },
     "contact": {
       "label": "聯絡我們",
-      "email": "office@cherryhillccc.org",
-      "phone": "(856) 424-3555"
+      "email": "chccc_office@yahoo.com",
+      "phone": "(856) 428-1398"
     }
   },
   "footer": {
@@ -70,5 +72,12 @@
     "body": "抱歉，您要找的頁面不存在。",
     "link": "回到首頁"
   },
-  "skipToContent": "跳到主要內容"
+  "skipToContent": "跳到主要內容",
+  "heroAlt": "教會二十二週年全體會眾合影",
+  "welcomeAlt": "弟兄姊妹在希望之種聚會中合影",
+  "visitAlt": "弟兄在教會活動中拍照留念",
+  "gallery": {
+    "heading": "我們的社區生活",
+    "subtitle": "Community Life"
+  }
 }

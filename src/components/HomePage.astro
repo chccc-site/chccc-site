@@ -3,8 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Nav from './Nav.astro';
 import Hero from './Hero.astro';
 import Services from './Services.astro';
+import PhotoStrip from './PhotoStrip.astro';
 import Welcome from './Welcome.astro';
 import WhatToExpect from './WhatToExpect.astro';
+import Gallery from './Gallery.astro';
 import InfoStrip from './InfoStrip.astro';
 import Map from './Map.astro';
 import Footer from './Footer.astro';
@@ -26,10 +28,12 @@ const nav = { ...s.nav, langToggleHref: `${baseWithSlash}${s.nav.langToggleHref.
 <Layout title={s.title} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
   <Nav nav={nav} />
   <main id="main-content">
-    <Hero hero={s.hero} />
+    <Hero hero={s.hero} heroAlt={s.heroAlt} />
     <Services heading={s.services.heading} items={s.services.items} />
-    <Welcome heading={s.welcome.heading} body={s.welcome.body} />
-    <WhatToExpect heading={s.expect.heading} items={s.expect.items} />
+    <PhotoStrip />
+    <Welcome heading={s.welcome.heading} body={s.welcome.body} welcomeAlt={s.welcomeAlt} />
+    <WhatToExpect heading={s.expect.heading} items={s.expect.items} visitAlt={s.visitAlt} />
+    <Gallery heading={s.gallery.heading} subtitle={s.gallery.subtitle} />
     <InfoStrip info={s.info} />
     <Map address={s.info.address} />
   </main>

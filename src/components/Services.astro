@@ -14,12 +14,12 @@ interface Props {
 const { heading, items } = Astro.props;
 ---
 
-<section id="services" class="py-12 sm:py-16 bg-bg">
+<section id="services" class="py-12 sm:py-16 bg-bg section-animate">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
     <h2 class="text-[28px] font-normal text-center mb-10 leading-snug">{heading}</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+    <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
       {items.map((item) => (
-        <div class="bg-surface rounded-lg p-7 text-center shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+        <div class="w-full sm:w-[calc(33.333%-1.5rem)] bg-surface rounded-lg p-7 text-center shadow-[0_1px_3px_rgba(0,0,0,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
           <div class="text-[28px] sm:text-[32px] font-light text-primary leading-tight">{item.time}</div>
           <div class="text-base font-normal text-text mt-1">{item.label}</div>
           <div class="text-sm text-text-light mt-2">{item.day} · {item.sublabel}</div>

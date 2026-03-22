@@ -1,22 +1,40 @@
 ---
+import { Image } from 'astro:assets';
+import visitImg from '../assets/photos/visit.jpg';
+
 interface Props {
   heading: string;
   items: string[];
+  visitAlt: string;
 }
 
-const { heading, items } = Astro.props;
+const { heading, items, visitAlt } = Astro.props;
 ---
 
-<section id="visit" class="py-14 sm:py-20 bg-surface">
-  <div class="max-w-[680px] mx-auto px-4 sm:px-8 text-center">
-    <h2 class="text-[26px] sm:text-[28px] font-normal text-text leading-snug mb-8">{heading}</h2>
-    <ul class="space-y-4 text-left max-w-md mx-auto">
-      {items.map((item) => (
-        <li class="flex items-start gap-3 text-base text-text-light leading-relaxed">
-          <span class="text-primary mt-1 flex-shrink-0" aria-hidden="true">&#10003;</span>
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
+<section id="visit" class="py-14 sm:py-20 bg-surface section-animate">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-8 lg:gap-16 items-center">
+    <div class="order-2 sm:order-1 bg-border rounded-lg overflow-hidden">
+      <Image
+        src={visitImg}
+        alt={visitAlt}
+        class="w-full h-full object-cover"
+        widths={[400, 600]}
+        sizes="(min-width: 640px) 50vw, 100vw"
+        loading="lazy"
+      />
+    </div>
+    <div class="order-1 sm:order-2">
+      <h2 class="text-[26px] sm:text-[28px] font-normal text-text leading-snug mb-8">{heading}</h2>
+      <ul class="space-y-4">
+        {items.map((item) => (
+          <li class="flex items-start gap-3 text-base text-text-light leading-relaxed">
+            <span class="mt-0.5 flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+              <span class="text-primary text-sm" aria-hidden="true">&#10003;</span>
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>

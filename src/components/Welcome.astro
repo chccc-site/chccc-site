@@ -1,15 +1,31 @@
 ---
+import { Image } from 'astro:assets';
+import welcomeImg from '../assets/photos/welcome.jpg';
+
 interface Props {
   heading: string;
   body: string;
+  welcomeAlt: string;
 }
 
-const { heading, body } = Astro.props;
+const { heading, body, welcomeAlt } = Astro.props;
 ---
 
-<section id="welcome" class="py-14 sm:py-20 bg-bg">
-  <div class="max-w-[680px] mx-auto px-4 sm:px-8 text-center">
-    <h2 class="text-[26px] sm:text-[28px] font-normal text-text leading-snug mb-4">{heading}</h2>
-    <p class="text-base text-text-light leading-relaxed">{body}</p>
+<section id="welcome" class="py-14 sm:py-20 bg-bg section-animate">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-8 lg:gap-16 items-center">
+    <div>
+      <h2 class="text-[26px] sm:text-[28px] font-normal text-text leading-snug mb-4">{heading}</h2>
+      <p class="text-base text-text-light leading-relaxed">{body}</p>
+    </div>
+    <div class="bg-border rounded-lg overflow-hidden">
+      <Image
+        src={welcomeImg}
+        alt={welcomeAlt}
+        class="w-full h-full object-cover"
+        widths={[400, 600]}
+        sizes="(min-width: 640px) 50vw, 100vw"
+        loading="lazy"
+      />
+    </div>
   </div>
 </section>
