@@ -19,7 +19,8 @@ const strings = locale === 'zh'
   ? await import('../content/strings.zh.json')
   : await import('../content/strings.en.json');
 const s = strings.default ?? strings;
-const nav = { ...s.nav, langToggleHref: `${base}${s.nav.langToggleHref.replace(/^\//, '')}` };
+const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
+const nav = { ...s.nav, langToggleHref: `${baseWithSlash}${s.nav.langToggleHref.replace(/^\//, '')}` };
 ---
 
 <Layout title={s.title} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
