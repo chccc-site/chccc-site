@@ -14,8 +14,8 @@ const s = await loadStrings(locale);
 
 // Load about content filtered by locale suffix
 const allAbout = await getCollection('about');
-const beliefs = allAbout.find((e) => e.id === `beliefs.${locale}.md` || e.id === `beliefs.${locale}`);
-const history = allAbout.find((e) => e.id === `history.${locale}.md` || e.id === `history.${locale}`);
+const beliefs = allAbout.find((e) => e.id === `beliefs${locale}`);
+const history = allAbout.find((e) => e.id === `history${locale}`);
 
 // Load pastors filtered by locale subdirectory
 const allPastors = await getCollection('pastors');
