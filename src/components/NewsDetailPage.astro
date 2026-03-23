@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { loadStrings, localePath, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  date: Date;
+  image?: string;
+  Content: any;
+}
+
+const { locale, title, date, image, Content } = Astro.props;
+const s = await loadStrings(locale);
+
+function formatDate(d: Date): string {
+  if (locale === 'zh') {
+    return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+  }
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+---
+
+<Layout title={`${title} | ${s.title}`} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={s.nav} locale={locale} />
+  <main id="main-content">
+    <section class="py-12 sm:py-16">
+      <div class="max-w-[800px] mx-auto px-4 sm:px-8">
+        <a href={localePath(locale, 'news')} class="text-sm text-primary no-underline hover:underline mb-6 inline-block">
+          {s.newsPage.backToList}
+        </a>
+
+        {image && (
+          <img src={image} alt={title} class="rounded-lg w-full max-h-[400px] object-cover mb-6" />
+        )}
+
+        <h1 class="text-[28px] font-medium mb-4">{title}</h1>
+        <p class="text-sm text-text-light mb-8">{formatDate(date)}</p>
+
+        <div class="text-base leading-relaxed text-text">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer footer={s.footer} locale={locale} />
+</Layout>

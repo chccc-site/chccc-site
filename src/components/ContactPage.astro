@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Map from './Map.astro';
+import Footer from './Footer.astro';
+import { loadStrings, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = await loadStrings(locale);
+---
+
+<Layout title={`${s.contactPage.heading} | ${s.title}`} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={s.nav} locale={locale} />
+  <main id="main-content">
+    <section class="py-12 sm:py-16">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <h1 class="text-[28px] font-normal text-center mb-10">{s.contactPage.heading}</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 section-animate">
+          <!-- Contact Info -->
+          <div class="flex flex-col gap-8">
+            <div>
+              <p class="text-sm text-text-light font-medium uppercase tracking-wide mb-1">{s.info.address.label}</p>
+              <p class="text-base text-text">{s.info.address.line1}</p>
+              <p class="text-base text-text">{s.info.address.line2}</p>
+            </div>
+
+            <div>
+              <p class="text-sm text-text-light font-medium uppercase tracking-wide mb-1">{s.info.contact.label}</p>
+              <p class="text-base">
+                <a href={`tel:${s.info.contact.phone.replace(/[^\d+]/g, '')}`} class="text-primary no-underline hover:underline">
+                  {s.info.contact.phone}
+                </a>
+              </p>
+              <p class="text-base">
+                <a href={`mailto:${s.info.contact.email}`} class="text-primary no-underline hover:underline">
+                  {s.info.contact.email}
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <p class="text-sm text-text-light font-medium uppercase tracking-wide mb-1">{s.info.livestream.label}</p>
+              <p class="text-base text-text">{s.info.livestream.detail}</p>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div>
+            <Map address={s.info.address} />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer footer={s.footer} locale={locale} />
+</Layout>

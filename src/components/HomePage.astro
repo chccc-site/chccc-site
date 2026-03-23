@@ -10,23 +10,18 @@ import Gallery from './Gallery.astro';
 import InfoStrip from './InfoStrip.astro';
 import Map from './Map.astro';
 import Footer from './Footer.astro';
+import { loadStrings, type Locale } from '../lib/i18n';
 
 interface Props {
-  locale: 'zh' | 'en';
+  locale: Locale;
 }
 
 const { locale } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const strings = locale === 'zh'
-  ? await import('../content/strings.zh.json')
-  : await import('../content/strings.en.json');
-const s = strings.default ?? strings;
-const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
-const nav = { ...s.nav, langToggleHref: `${baseWithSlash}${s.nav.langToggleHref.replace(/^\//, '')}` };
+const s = await loadStrings(locale);
 ---
 
 <Layout title={s.title} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
-  <Nav nav={nav} />
+  <Nav nav={s.nav} locale={locale} />
   <main id="main-content">
     <Hero hero={s.hero} heroAlt={s.heroAlt} />
     <Services heading={s.services.heading} items={s.services.items} />
@@ -37,5 +32,5 @@ const nav = { ...s.nav, langToggleHref: `${baseWithSlash}${s.nav.langToggleHref.
     <InfoStrip info={s.info} />
     <Map address={s.info.address} />
   </main>
-  <Footer footer={s.footer} />
+  <Footer footer={s.footer} locale={locale} />
 </Layout>

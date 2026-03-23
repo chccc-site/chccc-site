@@ -1,0 +1,24 @@
+---
+import NewsDetailPage from '../../../components/NewsDetailPage.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allAnnouncements = await getCollection('announcements');
+  const enPosts = allAnnouncements.filter((e) => e.id.startsWith('en/'));
+
+  return enPosts.map((post) => ({
+    params: { slug: post.id.replace('en/', '').replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<NewsDetailPage
+  locale="en"
+  title={post.data.title}
+  date={post.data.date}
+  image={post.data.image}
+  Content={Content}
+/>

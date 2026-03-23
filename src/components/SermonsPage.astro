@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { loadStrings, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = await loadStrings(locale);
+
+const TWITCH_PARENTS = import.meta.env.PROD
+  ? ['chccc-site.github.io']
+  : ['localhost'];
+const parentParam = TWITCH_PARENTS.map((p) => `parent=${p}`).join('&');
+const twitchSrc = `https://player.twitch.tv/?channel=chccc08003&${parentParam}`;
+const twitchChannelUrl = 'https://www.twitch.tv/chccc08003';
+---
+
+<Layout title={`${s.sermonsPage.heading} | ${s.title}`} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={s.nav} locale={locale} />
+  <main id="main-content">
+    <section class="py-12 sm:py-16">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <h1 class="text-[28px] font-normal text-center mb-10">{s.sermonsPage.heading}</h1>
+
+        <div class="section-animate">
+          <div class="aspect-video rounded-lg overflow-hidden bg-[#18181b]">
+            <iframe
+              src={twitchSrc}
+              allowfullscreen
+              class="w-full h-full"
+              title="Twitch livestream"
+            ></iframe>
+          </div>
+
+          <p class="text-center text-base text-text-light mt-6">
+            {s.sermonsPage.schedule}
+          </p>
+
+          <p class="text-center mt-3">
+            <a href={twitchChannelUrl} target="_blank" rel="noopener noreferrer" class="text-sm text-primary no-underline hover:underline">
+              {s.sermonsPage.fallbackLink}
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer footer={s.footer} locale={locale} />
+</Layout>

@@ -1,25 +1,48 @@
 ---
+import { localePath, langToggleHref, type Locale } from '../lib/i18n';
+
 interface Props {
   nav: {
     churchName: string;
     churchNameEn: string;
-    services: string;
-    welcome: string;
-    visit: string;
+    home: string;
+    about: string;
+    sermons: string;
+    news: string;
+    giving: string;
     contact: string;
     langToggle: string;
     langToggleHref: string;
     menuLabel: string;
   };
+  locale: Locale;
 }
 
-const { nav } = Astro.props;
+const { nav, locale } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { label: nav.about, href: localePath(locale, 'about') },
+  { label: nav.sermons, href: localePath(locale, 'sermons') },
+  { label: nav.news, href: localePath(locale, 'news') },
+  { label: nav.giving, href: localePath(locale, 'giving') },
+  { label: nav.contact, href: localePath(locale, 'contact') },
+];
+
+const toggleHref = langToggleHref(currentPath, locale);
+const homePath = localePath(locale, '');
+
+function isActive(href: string): boolean {
+  // Normalize both paths for comparison
+  const clean = (p: string) => p.replace(/\/+$/, '');
+  return clean(currentPath).startsWith(clean(href));
+}
 ---
 
 <nav aria-label="Main navigation" class="sticky top-0 z-50 bg-surface border-b border-border">
   <div class="max-w-[1200px] mx-auto px-4 sm:px-8 flex items-center justify-between h-16">
     <div class="flex-shrink-0">
-      <a href="#" class="text-text no-underline">
+      <a href={homePath} class="text-text no-underline">
         <span class="text-lg font-medium leading-tight block">{nav.churchName}</span>
         {nav.churchNameEn && (
           <span class="text-xs text-text-light block">{nav.churchNameEn}</span>
@@ -28,20 +51,21 @@ const { nav } = Astro.props;
     </div>
 
     <div class="hidden sm:flex items-center gap-6">
-      <a href="#services" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
-        {nav.services}
-      </a>
-      <a href="#welcome" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
-        {nav.welcome}
-      </a>
-      <a href="#visit" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
-        {nav.visit}
-      </a>
-      <a href="#contact" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
-        {nav.contact}
-      </a>
+      {links.map(({ label, href }) => (
+        <a
+          href={href}
+          class:list={[
+            'text-[15px] font-medium no-underline transition-colors duration-150',
+            isActive(href)
+              ? 'text-text border-b-2 border-primary pb-0.5'
+              : 'text-text-light hover:text-text',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
       <a
-        href={nav.langToggleHref}
+        href={toggleHref}
         class="text-[13px] text-text-light border border-border rounded px-3 py-1 hover:text-text hover:border-text transition-colors duration-150 no-underline"
       >
         {nav.langToggle}
@@ -50,7 +74,7 @@ const { nav } = Astro.props;
 
     <div class="flex sm:hidden items-center gap-3">
       <a
-        href={nav.langToggleHref}
+        href={toggleHref}
         class="text-[13px] text-text-light border border-border rounded px-3 py-1 no-underline"
       >
         {nav.langToggle}
@@ -77,10 +101,17 @@ const { nav } = Astro.props;
     class="sm:hidden fixed inset-0 top-16 bg-surface z-40 flex flex-col items-center justify-center gap-8 transition-all duration-200 ease-out"
     style="display:none;"
   >
-    <a href="#services" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.services}</a>
-    <a href="#welcome" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.welcome}</a>
-    <a href="#visit" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.visit}</a>
-    <a href="#contact" class="text-xl font-medium text-text no-underline py-2 mobile-nav-link">{nav.contact}</a>
+    {links.map(({ label, href }) => (
+      <a
+        href={href}
+        class:list={[
+          'text-xl font-medium no-underline py-2 mobile-nav-link',
+          isActive(href) ? 'text-primary' : 'text-text',
+        ]}
+      >
+        {label}
+      </a>
+    ))}
   </div>
 </nav>
 

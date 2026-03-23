@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { loadStrings, localePath, type Locale } from '../lib/i18n';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = await loadStrings(locale);
+
+const allAnnouncements = await getCollection('announcements');
+const announcements = allAnnouncements
+  .filter((e) => e.id.startsWith(`${locale}/`))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date): string {
+  if (locale === 'zh') {
+    const weekdays = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
+    return `${weekdays[date.getDay()]} · ${date.getMonth() + 1}月${date.getDate()}日`;
+  }
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${weekdays[date.getDay()]} · ${months[date.getMonth()]} ${date.getDate()}`;
+}
+
+function getSlug(id: string): string {
+  // id is like "zh/sample-announcement.md" or "zh/sample-announcement"
+  return id.replace(`${locale}/`, '').replace(/\.md$/, '');
+}
+---
+
+<Layout title={`${s.newsPage.heading} | ${s.title}`} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={s.nav} locale={locale} />
+  <main id="main-content">
+    <section class="py-12 sm:py-16">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <h1 class="text-[28px] font-normal text-center mb-10">{s.newsPage.heading}</h1>
+
+        {announcements.length > 0 ? (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {announcements.map((post) => (
+              <a
+                href={`${localePath(locale, 'news')}/${getSlug(post.id)}`}
+                class="block bg-surface rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.08)] border-l-4 border-primary p-6 no-underline transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <p class="text-sm text-text-light mb-2">{formatDate(post.data.date)}</p>
+                <h2 class="text-lg font-medium text-text mb-2">{post.data.title}</h2>
+                <p class="text-sm text-text-light line-clamp-2">{post.body?.slice(0, 100)}</p>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-16 section-animate">
+            <div class="w-16 h-0.5 bg-primary/30 mx-auto mb-6"></div>
+            <p class="text-text-light text-lg">{s.newsPage.empty}</p>
+            <div class="w-16 h-0.5 bg-primary/30 mx-auto mt-6"></div>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer footer={s.footer} locale={locale} />
+</Layout>

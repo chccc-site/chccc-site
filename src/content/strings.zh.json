@@ -6,9 +6,11 @@
   "nav": {
     "churchName": "櫻桃山華人基督教會",
     "churchNameEn": "Cherry Hill Chinese Christian Church",
-    "services": "崇拜",
-    "welcome": "歡迎",
-    "visit": "到訪",
+    "home": "首頁",
+    "about": "關於",
+    "sermons": "崇拜",
+    "news": "公告",
+    "giving": "奉獻",
     "contact": "聯絡",
     "langToggle": "EN",
     "langToggleHref": "/en/",
@@ -79,5 +81,34 @@
   "gallery": {
     "heading": "我們的社區生活",
     "subtitle": "Community Life"
+  },
+  "aboutPage": {
+    "heading": "關於我們",
+    "beliefsNav": "教會信仰",
+    "pastorsNav": "牧者團隊",
+    "historyNav": "教會歷史",
+    "pastorsHeading": "牧者團隊",
+    "pastorsEmpty": "即將更新"
+  },
+  "sermonsPage": {
+    "heading": "崇拜直播",
+    "schedule": "每週日上午十點直播",
+    "fallbackLink": "前往 Twitch 觀看"
+  },
+  "newsPage": {
+    "heading": "教會公告",
+    "empty": "暫時沒有公告",
+    "backToList": "← 返回公告"
+  },
+  "givingPage": {
+    "heading": "奉獻",
+    "body": "您的慷慨奉獻支持教會的事工與使命。感謝您忠心的管家職分。",
+    "paypalButton": "透過 PayPal 線上奉獻",
+    "checkHeading": "支票奉獻",
+    "checkBody": "請將支票抬頭寫「Cherry Hill Chinese Christian Church」，郵寄至：",
+    "mailAddress": "299 Browning Lane, Cherry Hill, NJ 08003"
+  },
+  "contactPage": {
+    "heading": "聯絡我們"
   }
 }

@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { loadStrings, type Locale } from '../lib/i18n';
+import { getCollection, render } from 'astro:content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = await loadStrings(locale);
+
+// Load about content filtered by locale suffix
+const allAbout = await getCollection('about');
+const beliefs = allAbout.find((e) => e.id === `beliefs.${locale}.md` || e.id === `beliefs.${locale}`);
+const history = allAbout.find((e) => e.id === `history.${locale}.md` || e.id === `history.${locale}`);
+
+// Load pastors filtered by locale subdirectory
+const allPastors = await getCollection('pastors');
+const pastors = allPastors
+  .filter((e) => e.id.startsWith(`${locale}/`))
+  .sort((a, b) => a.data.order - b.data.order);
+
+// Render markdown content
+const beliefsContent = beliefs ? await render(beliefs) : null;
+const historyContent = history ? await render(history) : null;
+const pastorEntries = await Promise.all(
+  pastors.map(async (p) => ({
+    ...p.data,
+    Content: (await render(p)).Content,
+  }))
+);
+
+function getInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+}
+---
+
+<Layout title={`${s.aboutPage.heading} | ${s.title}`} description={s.description} lang={s.lang} htmlLang={s.htmlLang} skipToContent={s.skipToContent}>
+  <Nav nav={s.nav} locale={locale} />
+  <main id="main-content">
+    <section class="py-12 sm:py-16">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-8">
+        <h1 class="text-[28px] font-normal text-center mb-10">{s.aboutPage.heading}</h1>
+
+        <!-- Section navigation (desktop only) -->
+        <div class="hidden sm:flex justify-center gap-6 mb-12">
+          <a href="#beliefs" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+            {s.aboutPage.beliefsNav}
+          </a>
+          <a href="#pastors" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+            {s.aboutPage.pastorsNav}
+          </a>
+          <a href="#history" class="text-[15px] font-medium text-text-light hover:text-text no-underline transition-colors duration-150">
+            {s.aboutPage.historyNav}
+          </a>
+        </div>
+
+        <!-- Beliefs -->
+        <section id="beliefs" class="section-animate mb-14 sm:mb-20">
+          <h2 class="text-[26px] sm:text-[28px] font-normal mb-6">{beliefs?.data.title ?? s.aboutPage.beliefsNav}</h2>
+          <div class="text-base leading-relaxed text-text">
+            {beliefsContent && <beliefsContent.Content />}
+          </div>
+        </section>
+
+        <!-- Pastors -->
+        <section id="pastors" class="section-animate mb-14 sm:mb-20">
+          <h2 class="text-[26px] sm:text-[28px] font-normal mb-8">{s.aboutPage.pastorsHeading}</h2>
+          {pastorEntries.length > 0 ? (
+            <div class="flex flex-col gap-8">
+              {pastorEntries.map((pastor) => (
+                <div class="flex flex-col sm:flex-row gap-6 items-start">
+                  {pastor.photo ? (
+                    <img
+                      src={pastor.photo}
+                      alt={pastor.name}
+                      class="w-[160px] h-[160px] rounded-lg object-cover flex-shrink-0"
+                    />
+                  ) : (
+                    <div class="w-[160px] h-[160px] rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <span class="text-4xl font-medium text-primary">{getInitials(pastor.name)}</span>
+                    </div>
+                  )}
+                  <div>
+                    <h3 class="text-lg font-medium">{pastor.name}</h3>
+                    <p class="text-sm text-text-light mb-2">{pastor.title}</p>
+                    <div class="text-base leading-relaxed">
+                      <pastor.Content />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-text-light">{s.aboutPage.pastorsEmpty}</p>
+          )}
+        </section>
+
+        <!-- History -->
+        <section id="history" class="section-animate">
+          <h2 class="text-[26px] sm:text-[28px] font-normal mb-6">{history?.data.title ?? s.aboutPage.historyNav}</h2>
+          <div class="text-base leading-relaxed text-text">
+            {historyContent && <historyContent.Content />}
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <Footer footer={s.footer} locale={locale} />
+</Layout>

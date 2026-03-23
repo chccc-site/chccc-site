@@ -6,9 +6,11 @@
   "nav": {
     "churchName": "Cherry Hill Chinese Christian Church",
     "churchNameEn": "",
-    "services": "Services",
-    "welcome": "Welcome",
-    "visit": "Visit",
+    "home": "Home",
+    "about": "About",
+    "sermons": "Sermons",
+    "news": "News",
+    "giving": "Giving",
     "contact": "Contact",
     "langToggle": "中文",
     "langToggleHref": "/zh/",
@@ -79,5 +81,34 @@
   "gallery": {
     "heading": "Our Community Life",
     "subtitle": "生活點滴"
+  },
+  "aboutPage": {
+    "heading": "About Us",
+    "beliefsNav": "Our Beliefs",
+    "pastorsNav": "Our Pastors",
+    "historyNav": "History",
+    "pastorsHeading": "Our Pastors",
+    "pastorsEmpty": "Coming soon"
+  },
+  "sermonsPage": {
+    "heading": "Live Worship",
+    "schedule": "Live every Sunday at 10:00 AM",
+    "fallbackLink": "Watch on Twitch"
+  },
+  "newsPage": {
+    "heading": "Announcements",
+    "empty": "No announcements yet",
+    "backToList": "← Back to News"
+  },
+  "givingPage": {
+    "heading": "Giving",
+    "body": "Your generous giving supports the ministries and mission of our church. Thank you for your faithful stewardship.",
+    "paypalButton": "Give Online via PayPal",
+    "checkHeading": "Give by Check",
+    "checkBody": "Please make checks payable to \"Cherry Hill Chinese Christian Church\" and mail to:",
+    "mailAddress": "299 Browning Lane, Cherry Hill, NJ 08003"
+  },
+  "contactPage": {
+    "heading": "Contact Us"
   }
 }
