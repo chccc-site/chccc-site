@@ -1,6 +1,7 @@
 ---
 title: 教會春季退修會
 date: 2026-03-15
+image: /chccc-site/images/news/SpiritualGrowthCamps_April2026.jpg
 ---
 
 教會將於四月舉辦春季退修會，歡迎弟兄姊妹踴躍報名參加。詳情請洽教會辦公室。
